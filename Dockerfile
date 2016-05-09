@@ -29,9 +29,9 @@ ENV INFLUXDB_PROTO http
 ENV INFLUXDB_USER grafana
 ENV INFLUXDB_PASS changeme
 ENV GRAFANA_USER admin
-ENV GRAFANA_PASS admin
+ENV GRAFANA_PASS changeme
 
-COPY ./grafana.ini /etc/grafana/grafana.ini.tpl
+COPY ./grafana.ini /usr/share/grafana/conf/defaults.ini.tpl
 COPY ./config-*.js /etc/grafana/
 COPY ./run.sh /run.sh
 

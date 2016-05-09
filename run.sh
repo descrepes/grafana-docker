@@ -7,7 +7,7 @@ for f in $(ls /etc/grafana/config-*.js); do
   mv "$f" "$f.tpl"
   envtpl "$f.tpl"
 done
-envtpl /etc/grafana/grafana.ini.tpl
+envtpl /usr/share/grafana/conf/defaults.ini.tpl
 
 : "${GF_PATHS_DATA:=/var/lib/grafana}"
 : "${GF_PATHS_LOGS:=/var/log/grafana}"
@@ -45,8 +45,6 @@ if [ ! -f /.ds_is_configured ]; then
     echo "Starting grafana for configuration"
     gosu grafana "$GRAFANA_BIN" \
       --homepath=/usr/share/grafana             \
-      --config=/etc/grafana/grafana.ini         \
-      cfg:default.server.http_addr="127.0.0.1"  \
       cfg:default.server.http_port="3001"       \
       cfg:default.paths.data="$GF_PATHS_DATA"   \
       cfg:default.paths.logs="$GF_PATHS_LOGS"   \
@@ -76,7 +74,6 @@ fi
 
 exec gosu grafana $GRAFANA_BIN              \
   --homepath=/usr/share/grafana             \
-  --config=/etc/grafana/grafana.ini         \
   cfg:default.paths.data="$GF_PATHS_DATA"   \
   cfg:default.paths.logs="$GF_PATHS_LOGS"   \
   cfg:default.paths.plugins="$GF_PATHS_PLUGINS"
