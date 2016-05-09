@@ -31,7 +31,7 @@ ENV INFLUXDB_PASS changeme
 ENV GRAFANA_USER admin
 ENV GRAFANA_PASS admin
 
-#COPY ./grafana.ini /etc/grafana/defaults.ini.tpl
+COPY ./grafana.ini /etc/grafana/grafana.ini.tpl
 COPY ./config-*.js /etc/grafana/
 COPY ./run.sh /run.sh
 

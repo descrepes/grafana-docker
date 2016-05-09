@@ -7,7 +7,7 @@ for f in $(ls /etc/grafana/config-*.js); do
   mv "$f" "$f.tpl"
   envtpl "$f.tpl"
 done
-#envtpl /etc/grafana/defaults.ini.tpl
+envtpl /etc/grafana/grafana.ini.tpl
 
 : "${GF_PATHS_DATA:=/var/lib/grafana}"
 : "${GF_PATHS_LOGS:=/var/log/grafana}"
@@ -15,6 +15,7 @@ done
 
 chown -R grafana:grafana "$GF_PATHS_DATA" "$GF_PATHS_LOGS"
 chown -R grafana:grafana /etc/grafana
+
 
 if [ ! -x $GRAFANA_BIN ]; then
   echo "can't find executable at $GRAFANA_BIN"
@@ -44,6 +45,7 @@ if [ ! -f /.ds_is_configured ]; then
     echo "Starting grafana for configuration"
     gosu grafana "$GRAFANA_BIN" \
       --homepath=/usr/share/grafana             \
+      --config=/etc/grafana/grafana.ini         \
       cfg:default.server.http_addr="127.0.0.1"  \
       cfg:default.server.http_port="3001"       \
       cfg:default.paths.data="$GF_PATHS_DATA"   \
