@@ -3,15 +3,11 @@
 GRAFANA_BIN=/usr/sbin/grafana-server
 
 for f in $(ls /etc/grafana/config-*.js); do
-    # look for jinja templates, and convert them
-    grep -q "{{ " "$f"
-    if [[ $? -eq 0 ]]; then
-        echo "converting $f"
-        mv "$f" "$f.tpl"
-        envtpl "$f.tpl"
-    fi
+  echo "converting $f"
+  mv "$f" "$f.tpl"
+  envtpl "$f.tpl"
 done
-envtpl /etcgrafana/defaults.ini.tpl
+#envtpl /etc/grafana/defaults.ini.tpl
 
 : "${GF_PATHS_DATA:=/var/lib/grafana}"
 : "${GF_PATHS_LOGS:=/var/log/grafana}"
@@ -46,7 +42,7 @@ wait_for_start_of_grafana(){
 
 if [ ! -f /.ds_is_configured ]; then
     echo "Starting grafana for configuration"
-    "$GRAFANA_BIN" \
+    gosu grafana "$GRAFANA_BIN" \
       --homepath=/usr/share/grafana             \
       cfg:default.server.http_addr="127.0.0.1"  \
       cfg:default.server.http_port="3001"       \
@@ -71,7 +67,7 @@ if [ ! -f /.ds_is_configured ]; then
     touch /.ds_is_configured
     echo
     echo "Restarting grafana..."
-    killall "$(basename $GRAFANA_BIN)"
+    gosu grafana pkill "$(basename $GRAFANA_BIN)"
 else
     echo "datasource is already configured, skip the configuration step"
 fi
