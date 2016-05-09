@@ -1,13 +1,13 @@
 # Grafana Docker image
 
-This project builds a Docker image with the latest master build of Grafana.
+This project builds a Docker image with the 3.0.0-beta7 build of Grafana.
 
 ## Running your Grafana container
 
 Start your container binding the external port `3000`.
 
 ```
-docker run -d --name=grafana -p 3000:3000 grafana/grafana
+docker run -d --name=grafana -p 3000:3000 descrepes/grafana
 ```
 
 Try it out, default admin user is admin/admin.
@@ -24,7 +24,7 @@ docker run \
   --name=grafana \
   -e "GF_SERVER_ROOT_URL=http://grafana.server.name" \
   -e "GF_SECURITY_ADMIN_PASSWORD=secret" \
-  grafana/grafana
+  descrepes/grafana
 ```
 
 ## Grafana container with persistent storage (recommended)
@@ -39,7 +39,7 @@ docker run \
   -p 3000:3000 \
   --name=grafana \
   --volumes-from grafana-storage \
-  grafana/grafana
+  descrepes/grafana
 ```
 
 ## Running specific version of Grafana
@@ -50,7 +50,7 @@ docker run \
   -d \
   -p 3000:3000 \
   --name grafana \
-  grafana/grafana:2.6.0
+  descrepes/grafana:3.0.0-beta7
 ```
 
 ## Official Grafana with unofficial plugins (community project):
