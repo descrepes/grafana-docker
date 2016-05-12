@@ -46,6 +46,7 @@ if [ ! -f /.ds_is_configured ]; then
     gosu grafana "$GRAFANA_BIN" \
       --homepath=/usr/share/grafana             \
       cfg:default.server.http_port="3001"       \
+      cfg:default.server.protocol="http"        \
       cfg:default.paths.data="$GF_PATHS_DATA"   \
       cfg:default.paths.logs="$GF_PATHS_LOGS"   \
       cfg:default.paths.plugins="$GF_PATHS_PLUGINS" &

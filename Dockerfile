@@ -17,7 +17,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     grafana-cli plugins install grafana-clock-panel && \
     grafana-cli plugins install raintank-worldping-app && \
-    grafana-cli plugins install grafana-piechart-panel
+    grafana-cli plugins install grafana-piechart-panel && \
+    grafana-cli plugins install grafana-worldmap-panel
 
 VOLUME ["/var/lib/grafana", "/var/lib/grafana/plugins", "/var/log/grafana", "/etc/grafana"]
 
