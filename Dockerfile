@@ -18,7 +18,9 @@ RUN apt-get update && \
     grafana-cli plugins install grafana-clock-panel && \
     grafana-cli plugins install raintank-worldping-app && \
     grafana-cli plugins install grafana-piechart-panel && \
-    grafana-cli plugins install grafana-worldmap-panel
+    grafana-cli plugins install grafana-worldmap-panel && \
+    git clone https://github.com/wevanscfi/grafana-newrelic-apm-datasource /tmp/grafana-newrelic-apm-datasource && \
+    mv /tmp/grafana-newrelic-apm-datasource/dist /usr/share/grafana/public/app/plugins/datasource/newrelic
 
 VOLUME ["/var/lib/grafana", "/var/lib/grafana/plugins", "/var/log/grafana", "/etc/grafana"]
 

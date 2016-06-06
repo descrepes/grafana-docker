@@ -56,14 +56,14 @@ if [ ! -f /.ds_is_configured ]; then
     echo "configure datasources..."
     for f in $(ls /etc/grafana/config-datasource*.js 2>/dev/null); do
         echo "datasource $f"
-        curl "http://$GRAFANA_USER:$GRAFANA_PASS@127.0.0.1:3001/api/datasources" -X POST -H 'Content-Type: application/json;charset=UTF-8' --data-binary "@$f"
+        curl "http://$GRAFANA_USER:$GRAFANA_PASS@127.0.0.1:3001/api/datasources" -X POST -H 'Content-Type: application/json;charset=UTF-8' --data-binary "@$f -L"
     done
 
     echo
     echo "configure dashboards..."
     for f in $(ls /etc/grafana/config-dashboard*.js 2>/dev/null); do
         echo "dashboard $f"
-        curl "http://$GRAFANA_USER:$GRAFANA_PASS@127.0.0.1:3001/api/dashboards/db" -X POST -H 'Content-Type: application/json;charset=UTF-8' --data-binary "@$f"
+        curl "http://$GRAFANA_USER:$GRAFANA_PASS@127.0.0.1:3001/api/dashboards/db" -X POST -H 'Content-Type: application/json;charset=UTF-8' --data-binary "@$f -L"
     done
     touch /.ds_is_configured
     echo
