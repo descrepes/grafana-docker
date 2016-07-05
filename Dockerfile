@@ -34,6 +34,8 @@ ENV INFLUXDB_USER grafana
 ENV INFLUXDB_PASS changeme
 ENV GRAFANA_USER admin
 ENV GRAFANA_PASS changeme
+ENV GRAFANA_SESSION_PROVIDER file
+ENV GRAFANA_SESSION_PROVIDER_CONFIG sessions
 
 COPY ./grafana.ini /usr/share/grafana/conf/defaults.ini.tpl
 COPY ./config-*.js /etc/grafana/
