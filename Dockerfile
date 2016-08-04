@@ -12,19 +12,19 @@ RUN apt-get update && \
     chmod +x /usr/sbin/gosu && \
     curl https://bootstrap.pypa.io/get-pip.py | python && \
     pip install envtpl && \
-    grafana-cli plugins install grafana-clock-panel && \
-    grafana-cli plugins install raintank-worldping-app && \
-    grafana-cli plugins install grafana-piechart-panel && \
-    grafana-cli plugins install grafana-worldmap-panel && \
+    grafana-cli plugins install abhisant-druid-datasource && \
     grafana-cli plugins install alexanderzobnin-zabbix-app && \
     grafana-cli plugins install bosun-app && \
     grafana-cli plugins install bosun-datasource && \
     grafana-cli plugins install crate-datasource && \
     grafana-cli plugins install fastweb-openfalcon-datasource && \
     grafana-cli plugins install fetzerch-sunandmoon-datasource && \
+    grafana-cli plugins install grafana-clock-panel && \
     grafana-cli plugins install grafana-influxdb-08-datasource && \
     grafana-cli plugins install grafana-kairosdb-datasource && \
+    grafana-cli plugins install grafana-piechart-panel && \
     grafana-cli plugins install grafana-simple-json-datasource && \
+    grafana-cli plugins install grafana-worldmap-panel && \
     grafana-cli plugins install kentik-app && \
     grafana-cli plugins install mtanda-heatmap-epoch-panel && \
     grafana-cli plugins install mtanda-histogram-panel && \
@@ -33,6 +33,7 @@ RUN apt-get update && \
     grafana-cli plugins install percona-percona-app && \
     grafana-cli plugins install praj-ams-datasource && \
     grafana-cli plugins install raintank-snap-app && \
+    grafana-cli plugins install raintank-worldping-app && \
     grafana-cli plugins install sileht-gnocchi-datasource && \
     grafana-cli plugins install stagemonitor-elasticsearch-app && \
     grafana-cli plugins install udoprog-heroic-datasource && \
